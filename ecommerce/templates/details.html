@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid mt-4" style=margin-bottom:100px;>
+    <div class="row">
+      <div class="col-sm-5">
+        <img src="{{l.image.url}}" style="height400x;width:400px;">
+      </div>
+      <div class="col-sm-5">
+        <h3 class="card-title text-uppercase">{{l.name}}</h3>
+        <h6>{{l.price}}</h6>
+        <h4>Production description</h4>
+        <p style="text-indent:80px;text-align:justify;line:height:2;">{{l.description}}</p>
+          {% if l.stock <= 0 %}
+          <h4>Out of stock</h4>
+          {% else %}
+        <h4 style="padding-top:10px;">
+          <a href="{% url 'cart:add_to_cart' l.slug %}" class="btn btn-primary">Add to cart</a></h4>
+
+          {% endif %}
+      </div>
+    </div>
+</div>
+{% endblock %}
